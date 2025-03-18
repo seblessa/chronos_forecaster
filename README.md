@@ -4,7 +4,6 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![AutoGluon](https://img.shields.io/badge/AutoGluon-Timeseries-orange)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/chronos_forecaster)
-![PyPI](https://img.shields.io/pypi/v/chronos_forecaster)
 
 🚀 **Chronos** is **Amazon's Foundation Model** for time series forecasting. It enables easy and efficient forecasting for various time series applications.
 
