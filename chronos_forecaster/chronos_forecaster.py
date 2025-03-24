@@ -73,7 +73,6 @@ class ChronosForecaster:
         if self.target_col not in df.columns:
             raise ValueError(f"{self.target_col} column not found in training DataFrame.")
 
-        # Validate item_id_col and ensure uniqueness of datetime column per series.
         if self.item_id_col is None:
             if df[self.datetime_col].nunique() < len(df):
                 raise ValueError(
