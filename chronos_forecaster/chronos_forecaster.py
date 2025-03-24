@@ -18,6 +18,7 @@ class ChronosForecaster:
         datetime_col: str,
         target_col: str,
         item_id_col: Optional[str] = None,
+        frequency: str = "h",
         random_state: Optional[int] = None,
         finetune: bool = False,
     ):
@@ -44,10 +45,17 @@ class ChronosForecaster:
         if datetime_col == target_col:
             raise ValueError("datetime_col and target_col must be different columns.")
 
+        try:
+            pd.date_range(start="2021-01-01", periods=1, freq=frequency)
+        except ValueError:
+            raise ValueError(f"Invalid frequency: {frequency}")
+
+
         self.forecast_horizon = forecast_horizon
         self.datetime_col = datetime_col
         self.target_col = target_col
         self.item_id_col = item_id_col
+        self.frequency = frequency
         self.random_state = random_state
         self.finetune = finetune
 
@@ -95,7 +103,7 @@ class ChronosForecaster:
         predictor = TimeSeriesPredictor(
             target=self.target_col,
             prediction_length=self.forecast_horizon,
-            freq="h",
+            freq=self.frequency,
             path=temp_dir,
             cache_predictions=False,
             verbosity=0,
