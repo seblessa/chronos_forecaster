@@ -79,8 +79,7 @@ class ChronosForecaster:
                     "Multiple entries found for a single datetime. Please ensure that the datetime column is unique or "
                     "provide an item_id column to distinguish between different time series."
                 )
-            self.item_id_col = "item_id"
-            df[self.item_id_col] = 0
+            df.loc[:, "item_id"] = 0
         else:
             if self.item_id_col not in df.columns:
                 raise ValueError(f"{self.item_id_col} column not found in training DataFrame.")
