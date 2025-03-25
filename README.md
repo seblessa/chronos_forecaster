@@ -1,7 +1,7 @@
 # 📈 Chronos Forecaster 
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue)
 ![AutoGluon](https://img.shields.io/badge/AutoGluon-Timeseries-orange)
 
 🚀 **Chronos** is **Amazon's Foundation Model** for time series forecasting, designed to handle a wide range of forecasting tasks with high accuracy and minimal effort. The model is trained on diverse real-world time series data and demonstrates strong generalization across domains.
