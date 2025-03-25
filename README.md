@@ -36,7 +36,7 @@ forecaster = ChronosForecaster(
     target_col="value",  # Column to forecast
     item_id_col=None,  # Specify if multiple time series exist
     random_state=42, # Random seed for reproducibility
-    finetune=True, # Fine-tune the model (takes much longer than inference)
+    finetune=False, # Fine-tune the model (takes much longer than inference)
 )
 
 # Generate predictions
