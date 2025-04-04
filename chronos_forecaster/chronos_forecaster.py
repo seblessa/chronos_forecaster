@@ -135,7 +135,7 @@ class ChronosForecaster:
             columns={
                 "timestamp": self.datetime_col,
                 "0.1": "lower_bound",
-                "mean": self.target_col,
+                "mean": f"{self.target_col}_predicted",
                 "0.9": "upper_bound",
             }
         )
