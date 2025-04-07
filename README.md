@@ -72,7 +72,7 @@ print(predictions)
 ```
 
 ### **Example Output**
-| date | lower_bound | predicted_target | upper_bound |
+| date | lower_bound | target_predicted | upper_bound |
 |------|------------|----------------|------------|
 | 2025-03-18 00:00:00 | 90.2 | 95.5 | 100.7 |
 | 2025-03-18 01:00:00 | 91.0 | 96.3 | 102.1 |
