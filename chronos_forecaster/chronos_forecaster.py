@@ -69,9 +69,7 @@ class ChronosForecaster:
                     "Multiple entries found for a single datetime for at least one item_id. Ensure datetime is unique per item."
                 )
 
-        df_context = TimeSeriesDataFrame.from_data_frame(
-            df, id_column=item_id_col, timestamp_column=self.datetime_col
-        )
+        df_context = TimeSeriesDataFrame.from_data_frame(df, id_column=item_id_col, timestamp_column=self.datetime_col)
 
         temp_dir = os.path.expanduser(f"~/.tmp/chronos/chronos_forecast_{time()}")
 
