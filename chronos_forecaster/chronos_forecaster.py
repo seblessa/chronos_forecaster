@@ -4,6 +4,7 @@ from time import time
 import pandas as pd
 import shutil
 import torch
+import uuid
 import os
 
 
@@ -73,7 +74,7 @@ class ChronosForecaster:
             df, id_column=item_id_col, timestamp_column=self.datetime_col
         )
 
-        temp_dir = os.path.expanduser(f"~/.tmp/chronos/chronos_forecast_{time()}")
+        temp_dir = os.path.expanduser(f"~/.tmp/chronos/chronos_forecast_{int(time())}_{uuid.uuid4().hex}")
 
         predictor = TimeSeriesPredictor(
             target=self.target_col,
