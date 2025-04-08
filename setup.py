@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="chronos_forecaster",
-    version="0.1.4",
+    version="0.1.5",
     description="Making time series forecasting with Amazon's Foundation Model Chronos simple and accessible.",
     author="Sebastião Santos Lessa",
     author_email="sebastiao.lessa@inesctec.pt",
