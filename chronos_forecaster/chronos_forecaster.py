@@ -100,14 +100,12 @@ class ChronosForecaster:
                 random_seed=self.random_state,
                 verbosity=0,
             )
-    
+
             prediction = predictor.predict(
                 data=df_context, random_seed=self.random_state, use_cache=False
             )
             pred_df = prediction.to_data_frame().reset_index()
-            result_columns = ["timestamp", item_id_col, "0.1", "mean", "0.9"] if self.item_id_col else ["timestamp", "0.1", "mean", "0.9"]
-            pred_df = pred_df[result_columns]
-    
+
         finally:
             try:
                 shutil.rmtree(temp_dir)
@@ -115,15 +113,22 @@ class ChronosForecaster:
                 pass
             except Exception as e:
                 print(f"[ChronosForecaster] Warning during temp_dir cleanup: {e}")
-    
-        rename_dict = {
-            "timestamp": self.datetime_col,
-            "0.1": "lower_bound",
-            "mean": f"{self.target_col}_predicted",
-            "0.9": "upper_bound",
-        }
-        if self.item_id_col:
-            rename_dict[item_id_col] = self.item_id_col
-    
-        return pred_df.rename(columns=rename_dict)
-    
+
+        if self.item_id_col and "item_id" in pred_df.columns:
+            pred_df.rename(columns={"item_id": self.item_id_col}, inplace=True)
+
+        result_columns = (
+            [self.item_id_col, "timestamp", "0.1", "mean", "0.9"]
+            if self.item_id_col
+            else ["timestamp", "0.1", "mean", "0.9"]
+        )
+        pred_df = pred_df[result_columns]
+
+        return pred_df.rename(
+            columns={
+                "timestamp": self.datetime_col,
+                "0.1": "lower_bound",
+                "mean": f"{self.target_col}_predicted",
+                "0.9": "upper_bound",
+            }
+        )
