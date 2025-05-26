@@ -51,7 +51,7 @@ class ChronosForecaster:
             raise ValueError(f"{self.target_col} column not found in training DataFrame.")
         if self.datetime_col not in df.columns:
             raise ValueError(f"{self.datetime_col} column not found in DataFrame.")
-
+    
         if self.item_id_col is None:
             if df[self.datetime_col].nunique() < len(df):
                 raise ValueError(
@@ -69,13 +69,13 @@ class ChronosForecaster:
                 raise ValueError(
                     "Multiple entries found for a single datetime for at least one item_id. Ensure datetime is unique per item."
                 )
-
+    
         df_context = TimeSeriesDataFrame.from_data_frame(
             df, id_column=item_id_col, timestamp_column=self.datetime_col
         )
-
+    
         temp_dir = os.path.expanduser(f"~/.tmp/chronos/chronos_forecast_{int(time())}_{uuid.uuid4().hex}")
-
+    
         predictor = TimeSeriesPredictor(
             target=self.target_col,
             prediction_length=self.forecast_horizon,
@@ -84,7 +84,7 @@ class ChronosForecaster:
             cache_predictions=False,
             verbosity=0,
         )
-
+    
         try:
             predictor.fit(
                 train_data=df_context,
@@ -100,13 +100,14 @@ class ChronosForecaster:
                 random_seed=self.random_state,
                 verbosity=0,
             )
-
+    
             prediction = predictor.predict(
                 data=df_context, random_seed=self.random_state, use_cache=False
             )
             pred_df = prediction.to_data_frame().reset_index()
-            pred_df = pred_df[["timestamp", "0.1", "mean", "0.9"]]
-
+            result_columns = ["timestamp", item_id_col, "0.1", "mean", "0.9"] if self.item_id_col else ["timestamp", "0.1", "mean", "0.9"]
+            pred_df = pred_df[result_columns]
+    
         finally:
             try:
                 shutil.rmtree(temp_dir)
@@ -114,12 +115,15 @@ class ChronosForecaster:
                 pass
             except Exception as e:
                 print(f"[ChronosForecaster] Warning during temp_dir cleanup: {e}")
-
-        return pred_df.rename(
-            columns={
-                "timestamp": self.datetime_col,
-                "0.1": "lower_bound",
-                "mean": f"{self.target_col}_predicted",
-                "0.9": "upper_bound",
-            }
-        )
+    
+        rename_dict = {
+            "timestamp": self.datetime_col,
+            "0.1": "lower_bound",
+            "mean": f"{self.target_col}_predicted",
+            "0.9": "upper_bound",
+        }
+        if self.item_id_col:
+            rename_dict[item_id_col] = self.item_id_col
+    
+        return pred_df.rename(columns=rename_dict)
+    
