@@ -60,6 +60,7 @@ df = pd.read_csv("your_timeseries_data.csv")
 forecaster = ChronosForecaster(
     forecast_horizon=24,  # Number of time steps to predict
     datetime_col="date",  # Column containing timestamps
+    frequency: str = "h", # Frequency of the time series ('h' = hourly, use 'M' for monthly, 'D' for daily, etc.)
     target_col="target",  # Column to forecast
     item_id_col=None,  # Specify if multiple time series exist
     random_state=42, # Random seed for reproducibility
