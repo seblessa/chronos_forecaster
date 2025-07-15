@@ -92,7 +92,7 @@ class ChronosForecaster:
                 hyperparameters={
                     "Chronos": {
                         "context_length": len(df_context),
-                        "device": "mps" if "cuda" if torch.cuda.is_available() else "cpu",
+                        "device": "cuda" if torch.cuda.is_available() else "cpu",
                         "model_path": "autogluon/chronos-bolt-base",
                         "fine_tune": self.finetune,
                     }
