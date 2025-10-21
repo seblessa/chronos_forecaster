@@ -2,14 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="chronos_forecaster",
-    version="0.1.12",
-    description="Making time series forecasting with Amazon's Foundation Model Chronos simple and accessible.",
+    version="0.2.0",
+    description="Unified interface for Amazon Chronos and Chronos-2 time series forecasting engines.",
     author="Sebastião Santos Lessa",
     author_email="sebastiao.lessa@inesctec.pt",
     license="MIT",
     packages=find_packages(),
     install_requires=[
-        "autogluon.timeseries",
+        "chronos-forecasting",
         "setuptools",
         "pandas",
         "torch",
@@ -19,5 +19,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.12",
+    python_requires=">=3.10",
 )

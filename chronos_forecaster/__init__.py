@@ -1,3 +1,3 @@
-from .chronos_forecaster import ChronosForecaster
+from .forecaster import ChronosForecaster
 
 __all__ = ["ChronosForecaster"]
