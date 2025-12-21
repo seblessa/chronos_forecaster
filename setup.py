@@ -5,7 +5,7 @@ setup(
     version="0.2.1",
     description="Unified interface for Amazon Chronos and Chronos-2 time series forecasting engines.",
     author="Sebastião Santos Lessa",
-    author_email="sebastiao.lessa@inesctec.pt",
+    author_email="sebastiao2002@gmail.com",
     license="MIT",
     packages=find_packages(),
     install_requires=[
@@ -13,6 +13,7 @@ setup(
         "setuptools",
         "pandas",
         "torch",
+        "boto3",
     ], 
     classifiers=[
         "Programming Language :: Python :: 3",
