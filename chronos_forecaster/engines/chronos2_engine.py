@@ -45,7 +45,7 @@ class Chronos2Engine:
             self._pipeline = Chronos2Pipeline.from_pretrained(
                 self.model_uri,
                 device_map=device,
-                torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32
+                dtype=torch.bfloat16 if device == "cuda" else torch.float32,
             )
 
         # Prepare context DataFrame
