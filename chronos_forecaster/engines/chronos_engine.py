@@ -50,7 +50,7 @@ class ChronosEngine:
             self._pipeline = ChronosBoltPipeline.from_pretrained(
                 self.model_uri,
                 device_map=device,
-                torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32
+                dtype=torch.bfloat16 if device == "cuda" else torch.float32,
             )
 
         # Convert to tensors (one per series)
