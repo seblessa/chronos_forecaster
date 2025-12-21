@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="chronos_forecaster",
-    version="0.2.0",
+    version="0.2.1",
     description="Unified interface for Amazon Chronos and Chronos-2 time series forecasting engines.",
     author="Sebastião Santos Lessa",
     author_email="sebastiao.lessa@inesctec.pt",
