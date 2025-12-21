@@ -16,7 +16,7 @@ class Chronos2Engine:
         forecast_horizon: int,
         frequency: str = "D",
         random_state: Optional[int] = None,
-        model_uri: str = "s3://autogluon/chronos-2/",
+        model_uri: str = "amazon/chronos-2",
     ) -> None:
         self.forecast_horizon = forecast_horizon
         self.frequency = frequency
